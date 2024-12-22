@@ -6,6 +6,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #000000;
   color: #ffffff;
+}
+
+body{
+  background-color: #000000;
+}
+
+#task-list::-webkit-scrollbar {
+  display: none;
 }
