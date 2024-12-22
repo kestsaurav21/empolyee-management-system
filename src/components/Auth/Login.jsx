@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Login = () => {
+const Login = ({ setUser }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -12,12 +12,27 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    setUser("admin");
+    handleLogin(formData.email, formData.password);
 
+    // Clear the form data
     setFormData({
         email: "",  
         password: "",
     })
+  };
+
+  const handleLogin = (email, password) => {
+    if (email === "admin.john@example.com" && password === "John") {
+      console.log("Admin Login Successful");
+      setUser["admin"];
+    } else if (email === "john.doe@example.com" && password === "John") {
+      console.log("Empolyee Login Successful");
+      setUser["empolyee"];
+    } else {
+      alert("Invalid Credentials");
+      setUser[null];
+    }
   };
 
   return (
@@ -32,9 +47,8 @@ const Login = () => {
           </label>
           <input
             required
-            className="border-2 border-gray-400 rounded-lg p-2 placeholder:text-white"
+            className="border-2 border-gray-400 rounded-lg p-2 text-black"
             type="email"
-            placeholder="Email"
             name="email"
             id="email"
             value={formData.email}
@@ -45,9 +59,8 @@ const Login = () => {
           </label>
           <input
             required
-            className="border-2 border-gray-400 rounded-lg p-2 placeholder:text-white"
+            className="border-2 border-gray-400 rounded-lg p-2 text-black"
             type="password"
-            placeholder="Password"
             name="password"
             id="password"
             value={formData.password}
